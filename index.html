@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SensationTech Energy-Aware Hosting</title>
+    <meta
+      name="description"
+      content="SensationTech proof-of-concept hosting that deploys Docker containers and reports container energy usage."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="bg-layer bg-grid"></div>
+    <div class="bg-layer bg-orb orb-a"></div>
+    <div class="bg-layer bg-orb orb-b"></div>
+    <div class="bg-layer bg-scan"></div>
+
+    <main class="page">
+      <section class="poc-banner reveal">
+        <strong>Proof of Concept:</strong> This platform is experimental and
+        should <strong>not</strong> be used for production workloads.
+      </section>
+
+      <section class="hero reveal">
+        <div class="hero-copy">
+          <p class="eyebrow">sensationtech.com</p>
+          <h1>Green Compute Hosting with Live Energy Telemetry</h1>
+          <p class="lead">
+            Deploy any Docker container from an image URL, then track power
+            usage per workload through API and Linux <code>/proc</code> energy
+            files.
+          </p>
+          <div class="pill-row">
+            <span class="pill">WordPress</span>
+            <span class="pill">Nextcloud</span>
+            <span class="pill">GitLab</span>
+            <span class="pill">MediaWiki</span>
+            <span class="pill">Django</span>
+            <span class="pill">Static Sites</span>
+          </div>
+        </div>
+        <aside class="telemetry-panel">
+          <p class="panel-title">Live Demo Telemetry</p>
+          <div class="metric">
+            <span>This Container Draw</span>
+            <strong><span data-live="watts">42.7</span> W</strong>
+          </div>
+          <div class="metric">
+            <span>Total Container Energy</span>
+            <strong><span data-live="kwh">0.184</span> kWh</strong>
+          </div>
+          <div class="metric">
+            <span>Active Containers</span>
+            <strong><span data-live="containers">38</span></strong>
+          </div>
+          <p class="sample-time">Last sample: <span data-live="time">--:--:--</span></p>
+        </aside>
+      </section>
+
+      <section class="card reveal">
+        <h2>How Deployment Works</h2>
+        <div class="steps">
+          <article>
+            <p class="step-number">01</p>
+            <h3>Submit Your Docker Image URL</h3>
+            <p>
+              Send a standard image reference such as
+              <code>docker.io/your-org/your-app:tag</code>.
+            </p>
+          </article>
+          <article>
+            <p class="step-number">02</p>
+            <h3>We Deploy It</h3>
+            <p>
+              We run and expose your containerized service on the hosting
+              platform.
+            </p>
+          </article>
+          <article>
+            <p class="step-number">03</p>
+            <h3>Track Energy in Real Time</h3>
+            <p>
+              Monitor usage through API endpoints and from inside Linux via
+              <code>/proc</code>.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="card reveal">
+        <h2>Energy Visibility with <a href="https://github.com/green-kernel/procpower" target="_blank" rel="noopener noreferrer">procpower</a></h2>
+        <p>
+          Every deployed workload can be analyzed for power draw. Query the API
+          for dashboarding, or read directly from the procfs interface.
+        </p>
+        <pre><code>
+cat /proc/energy/cgroup</code></pre>
+        <p class="muted">
+          Your app can also parse these files directly to surface energy usage
+          within your own product UI.
+        </p>
+      </section>
+
+      <section class="card reveal pricing">
+        <h2>Pricing Depends on Usage</h2>
+        <p>
+          Billing is usage-based: customers pay according to measured energy and
+          infrastructure consumption.
+        </p>
+        <p class="formula">
+          Monthly Price = Base Platform Fee + (Measured kWh × Energy Rate ×
+          Infrastructure Factor)
+        </p>
+        <div class="usage-meter">
+          <div class="usage-meter-fill" data-live-meter></div>
+        </div>
+      </section>
+
+      <section class="card reveal">
+        <h2>Coming Soon: Per-Request Energy Tracking</h2>
+        <p>
+          Next, we will add HTTP request-level energy estimation using
+          <a href="https://github.com/green-coding-solutions/request-energy-ebpf" target="_blank" rel="noopener noreferrer">request-energy-ebpf</a>.
+        </p>
+        <p class="muted">
+          This will let customers inspect the estimated energy of individual API
+          calls and web requests, not just total container usage.
+        </p>
+      </section>
+
+      <footer class="card footer reveal">
+        <p>
+          <strong>POC Notice:</strong> This is an example service for
+          demonstration only and is not production-ready.
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>
